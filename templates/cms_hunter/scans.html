@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% load widget_tweaks %} {% load static %}
+{% block content %}
+
+<div class="body">
+  <div class="container_1">
+    <table class="striped">
+      <tr>
+        <th></th>
+        <th>Hostname</th>
+        <th>CMS</th>
+        <th>IP</th>
+        <th>Server</th>
+        <th>Country</th>
+        <th>Status</th>
+        <th>Message</th>
+      </tr>
+      {% for scan in scan_list%}
+      <tr>
+        <th>{{forloop.counter}}</th>
+        <th><a href="{% url 'vulnerability_scan' scan.id %}">{{scan.hostname}}</a></th>
+        <th>{{scan.cms}}</th>
+        <th>{{scan.ip}}</th>
+        <th>{{scan.webserver}}</th>
+        <th>{{scan.country}}</th>
+        <th>{{scan.status}}</th>
+        <th>{{scan.message}}</th>
+        <th><a id="{{ scan.id }}" class="scan_delete" href="#">
+          <img src="{% static 'images/delete.png' %}" height="25" width="25"></a></th>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+  {% if messages %}
+       <a class="modal-trigger" href="#modal1"></a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="card-content black-text">
+                {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <a href="{% url 'scan' %}" class="modal-close waves-effect waves-green btn-flat">OK</a>
+        </div>
+    </div>
+  {% endif %}
+
+
+
+<script src="{% static 'js/hogan.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/hogan.min.js' %}"></script>
+<script src="{% static 'js/delete_scan.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h1 align="center">{{scan.hostname}}</h1>
+<div class="container">
+    <form method="POST">
+            {% csrf_token %}
+
+        {% if scan.cms %}
+        <div class="input-field col s3 checkbox">
+            <p>
+                <label>
+                   <input type="checkbox" name="cms" value="{{scan.cms}}" id="id_cms">
+                   <span>{{scan.cms}}</span>
+                </label>
+             </p>
+        </div>
+        {% endif %}
+
+        {% if scan.webserver %}
+        <div class="input-field col s3">
+            <p>
+                <label>
+                   <input type="checkbox" name="webserver" value="{{scan.webserver}}" id="id_webserver">
+                   <span>{{scan.webserver}}</span>
+                </label>
+             </p>
+        </div>
+        {% endif %}
+
+        {% if scan.country %}
+        <div class="input-field col s3">
+            <p>
+                <label>
+                   <input type="checkbox" name="country" value="{{scan.country}}" id="id_country">
+                   <span>{{scan.country}}</span>
+                </label>
+             </p>
+        </div>
+        {% endif %}
+
+        {% if scan.ip %}
+         <div class="input-field col s3">
+            <p>
+                <label>
+                   <input type="checkbox" name="ip" value="{{scan.ip}}" id="id_ip">
+                   <span>{{scan.ip}}</span>
+                </label>
+             </p>
+        </div>
+        {% endif %}
+        <div class="input-field col s4">
+            <p>
+                <label>
+                   <input type="checkbox" name="proxy_server" id="id_proxy_server"  value='1'/>
+                   <span>Proxy</span>
+                </label>
+             </p>
+        </div>
+        <div id="proxy" class="row hide">
+                    <div class="input-field col s3">
+                        {% render_field form.proxy_ip class="validate" id="ip" type="text" %}
+                        <label for="ip">IP</label>
+                    </div>
+                    <div class="input-field col s3">
+                        {% render_field form.port class="validate" id="port" type="text" %}
+                        <label for="port">port</label>
+                    </div>
+                    <div class="input-field col s3">
+                        {% render_field form.proxy_type class="browser-default"%}
+                    </div>
+                </div>
+                <div class="row hide">
+                    <div class="input-field col s3">
+                        {% render_field form.username class="validate" id="username" type="text" %}
+                        <label for="username">Login</label>
+                    </div>
+                    <div class="input-field col s6">
+                        {% render_field form.password class="validate" id="id_password" type="password" %}
+                        <label for="id_password">Password</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <p>
+                            <label>
+                               <input type="checkbox" name="socks" id="id_socks" value='2'>
+                               <span>Socks</span>
+                            </label>
+                         </p>
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Scan</button>
+            </div>
+    </form>
+</div>
+
+    {% if messages %}
+       <a class="modal-trigger" href="#modal1"></a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+        <h4>Error has occurred</h4>
+            <div class="card-content black-text">
+                {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <a href="{% url 'scan' %}" class="modal-close waves-effect waves-green btn-flat">OK</a>
+        </div>
+    </div>
+    {% endif %}
+
+
+<script src="{% static 'js/checkbox.js' %}"></script>
+
+{% endblock content %}

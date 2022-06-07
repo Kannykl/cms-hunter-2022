@@ -1,0 +1,124 @@
+
+.cms_form{
+    align: center;
+    margin: 0 auto;
+}
+header {
+  display: flex;
+  background-color: #26a69a;
+}
+
+.menu {
+text-align: right;
+display: flex;
+justify-content: right;
+align-items: right;
+}
+
+.title {
+  width: 50%;
+  text-align: center;
+  color: bisque;
+}
+
+.nit {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+
+.container_1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.container_2 {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  vertical-align: middle;
+}
+
+
+.my_table {
+width:81%;
+}
+
+
+.cl1, .cl2, .cl3 {
+  color: white;
+  cursor: pointer;
+  transition: color .3s linear;
+}
+
+.dlt {
+  margin-left:15px;
+}
+
+.cl2:hover, .cl3:hover {
+  color: blue;
+}
+
+.striped {
+  margin-right: 30px;
+}
+
+.filter {
+  margin-bottom: 50px;
+}
+
+.input-field {
+  margin-bottom: 30px;
+}
+
+.text {
+  margin-bottom: 30px;
+}
+
+th {
+  color: #26a69a;
+}
+
+td {
+  color: black;
+}
+
+.ul_wrapper {
+  text-align: center;
+}
+
+a {
+color: #26a69a;
+}
+
+.myalert{
+opacity: 0.4;
+margin-top: 200px;
+margin-left: 600px;
+font-size: 2rem;
+}
+
+.cl4{
+    margin-left: 15px;
+    margin-right:15px;
+    color: white;
+    cursor: pointer;
+    transition: color .3s linear;
+}
+
+.cl4:hover {
+    color: #f69bff;
+}
+
+.messages{
+margin-top:20px;
+}
+
+.hide {
+    visibility: hidden;
+}

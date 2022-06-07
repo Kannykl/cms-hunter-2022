@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+<div class="body">
+    <div class="container_1">
+        <table class="striped">
+            <tr>
+                <th>Hostname</th>
+                <th>CMS</th>
+                <th>Description</th>
+                <th>Repository</th>
+            </tr>
+            {% for cms in cms_list%}
+            <tr>
+                <th class="tooltipped" data-position="right" data-tooltip='{{message}}' >{{cms.hostname}}</th>
+                <th>{{cms.cms}}</th>
+                <th>{{cms.vulnerability}}</th>
+                <th>{{cms.github_repository}}</th>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="input-field col s6">
+            <form action="{% url 'json_search' %}" method="get" name="search">
+                  <div class="input-field col s6">
+                  {% render_field search_form.search class="validate" id="search" type="text" %}
+                  <label for="search">Search</label>
+                      <button type="submit" class="waves-effect waves-light btn-small">Find</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/hogan.js' %}"></script>
+<script src="{% static 'js/hogan.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock content %}
